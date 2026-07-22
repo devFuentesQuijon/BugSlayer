@@ -15,7 +15,7 @@ sistemático y corrección automatizada en un flujo de trabajo iterativo.
 | Campo | Valor |
 |-------|-------|
 | **Nombre** | Bug Slayer |
-| **Versión** | 1.1.0 |
+| **Versión** | 1.2.0 |
 | **Autor** | devFuentesQuijon & Hermes Agent |
 | **Licencia** | MIT |
 | **Skill Hermes** | `software-development/bug-slayer` |
@@ -90,8 +90,8 @@ PREPARAR → AUDITAR → ENCONTRAR → CORREGIR → VERIFICAR → REPETIR
 1. Descargar el paquete desde GitHub Releases:
 
 ```bash
-curl -L -o bugslayer-v1.1.0.tar.gz \
-  https://github.com/devFuentesQuijon/BugSlayer/releases/download/v1.1.0/bugslayer-v1.1.0.tar.gz
+curl -L -o bugslayer-v1.2.0.tar.gz \
+  https://github.com/devFuentesQuijon/BugSlayer/releases/download/v1.2.0/bugslayer-v1.2.0.tar.gz
 ```
 
 2. Extraer en el directorio de skills de Hermes:
@@ -449,3 +449,17 @@ Documentación detallada en archivos de `references/`.
 ## Licencia
 
 MIT - Hermes Agent © Nous Research
+
+## Changelog
+
+### v1.2.0
+- Reescritura completa del `SKILL.md` con flujo reordenado.
+- Mitigación de fallos silenciosos: pre-flight doble, timeouts explícitos y fallback a manual.
+- Auditoría manual directa clarificada como modo principal para proyectos grandes.
+- Nuevo `bugslayer-methodology.md`: metodología framework-agnóstica.
+- Actualización de installation guide en README.
+
+### v1.1.0
+- Publicación inicial en GitHub Releases.
+- Paquete distribuible `bugslayer-v1.2.0.tar.gz`.
+- README con guía de instalación desde release o repo.

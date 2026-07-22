@@ -19,7 +19,7 @@ sistemático y corrección automatizada en un flujo de trabajo iterativo.
 | **Autor** | devFuentesQuijon & Hermes Agent |
 | **Licencia** | MIT |
 | **Skill Hermes** | `software-development/bug-slayer` |
-| **Skills relaciónadas** | `multi-agent-auditing`, `systematic-debugging`, `requesting-code-review`, `test-driven-development`, `plan` |
+| **Skills relacionadas** | `multi-agent-auditing`, `systematic-debugging`, `requesting-code-review`, `test-driven-development`, `plan` |
 | **Plataformas soportadas** | Linux, macOS, Windows |
 
 ---
@@ -60,7 +60,7 @@ PREPARAR → AUDITAR → ENCONTRAR → CORREGIR → VERIFICAR → REPETIR
 3. **Deduplicación inteligente**: Si múltiples agentes reportan el mismo bug, se consolida un solo hallazgo con la evidencia más detallada.
 4. **Verificación antes de corrección**: Todo hallazgo debe ser verificado leyendo el código exacto antes de aplicar un fix.
 5. **Tests de regresión obligatorios**: Cada bug crítico o alto debe tener un test que lo prevenga de recurrencia.
-6. **Control de versiónes primero**: Nunca auditar sin Git ni sin backup; sin rollback, no hay auditoría segura.
+6. **Control de versiones primero**: Nunca auditar sin Git ni sin backup; sin rollback, no hay auditoría segura.
 7. **Manual como fallback**: Si los agentes fallan 2 veces, se audita manualmente. No se insiste con re-lanzamientos indefinidos.
 
 ---
@@ -71,9 +71,9 @@ PREPARAR → AUDITAR → ENCONTRAR → CORREGIR → VERIFICAR → REPETIR
 
 - `git` >= 2.0
 - Python 3.8+ (para scripts de verificación)
-- Proyecto bajo control de versiónes recomendado
+- Proyecto bajo control de versiones recomendado
 
-### Skills Relaciónadas
+### Skills Relacionadas
 
 - `software-development/multi-agent-auditing`
 - `software-development/systematic-debugging`
@@ -83,9 +83,9 @@ PREPARAR → AUDITAR → ENCONTRAR → CORREGIR → VERIFICAR → REPETIR
 
 ---
 
-## Instalaci\u00f3n
+## Instalación
 
-### Opci\u00f3n 1: Instalar desde el release (recomendado para usuarios finales)
+### Opción 1: Instalar desde el release (recomendado para usuarios finales)
 
 1. Descargar el paquete desde GitHub Releases:
 
@@ -98,7 +98,7 @@ curl -L -o bugslayer-v1.2.0.tar.gz \
 
 ```bash
 mkdir -p ~/.hermes/skills/software-development
-tar -xzf bugslayer-v1.1.0.tar.gz -C ~/.hermes/skills/software-development/
+tar -xzf bugslayer-v1.2.0.tar.gz -C ~/.hermes/skills/software-development/
 ```
 
 El resultado esperado es:
@@ -112,29 +112,29 @@ El resultado esperado es:
 └── references/
 ```
 
-3. Verificar la instalaci\u00f3n:
+3. Verificar la instalación:
 
 ```bash
 ls ~/.hermes/skills/software-development/bug-slayer/SKILL.md
 ```
 
-### Opci\u00f3n 2: Clonar desde el repositorio de GitHub
+### Opción 2: Clonar desde el repositorio de GitHub
 
 ```bash
 git clone https://github.com/devFuentesQuijon/BugSlayer.git \
    ~/.hermes/skills/software-development/bug-slayer
 ```
 
-### Opci\u00f3n 3: Copia desde una instalaci\u00f3n local existente
+### Opción 3: Copia desde una instalación local existente
 
-Si ya ten\u00e9s la skill en otro equipo o en este equipo, copiarla directamente:
+Si ya tenés la skill en otro equipo o en este equipo, copiarla directamente:
 
 ```bash
 cp -r /ruta/local/bug-slayer \
    ~/.hermes/skills/software-development/bug-slayer
 ```
 
-### Verificaci\u00f3n post-instalaci\u00f3n
+### Verificación post-instalación
 
 Confirmar que Hermes cargue la skill sin errores:
 
@@ -142,23 +142,23 @@ Confirmar que Hermes cargue la skill sin errores:
 hermes skills list | grep bug-slayer
 ```
 
-Para usarla, mencion\u00e1 `bug-slayer` o ejecutala sobre un proyecto, por ejemplo:
+Para usarla, mencioná `bug-slayer` o ejecutala sobre un proyecto, por ejemplo:
 
 ```
 Ejecuta Bug Slayer sobre /ruta/al/proyecto
 ```
 
-### Actualizaci\u00f3n
+### Actualización
 
-Para actualizar a una nueva versi\u00f3n desde Releases:
+Para actualizar a una nueva versión desde Releases:
 
 ```bash
 mv ~/.hermes/skills/software-development/bug-slayer \
    ~/.hermes/skills/software-development/bug-slayer.bak-$(date +%Y%m%d)
-curl -L -o bugslayer-v<nueva-versión>.tar.gz \
-   https://github.com/devFuentesQuijon/BugSlayer/releases/download/v<nueva-versión>/bugslayer-v<nueva-versión>.tar.gz
+curl -L -o bugslayer-v<nueva-version>.tar.gz \
+   https://github.com/devFuentesQuijon/BugSlayer/releases/download/v<nueva-version>/bugslayer-v<nueva-version>.tar.gz
 mkdir -p ~/.hermes/skills/software-development
-tar -xzf bugslayer-v<nueva-versión>.tar.gz \
+tar -xzf bugslayer-v<nueva-version>.tar.gz \
    -C ~/.hermes/skills/software-development/
 ```
 
@@ -209,7 +209,7 @@ Antes de auditar, se prepara el proyecto para una auditoría segura.
 
 ** Pasos obligatorios:**
 
-1. Verificar control de versiónes:
+1. Verificar control de versiones:
 
    ```bash
    cd <project_dir>
@@ -278,7 +278,7 @@ ls -la <project_dir>/{Dockerfile,docker-compose*.yml,requirements.txt,package.js
 **Agentes de auditor\u00eda (SIEMPRE read-only):**
 
 1. **Cazador de Bugs Cr\u00edticos** - seguridad, estabilidad, integridad de datos
-2. **Cazador de Bugs Funciónales** - l\u00f3gica, APIs, integraciones, RAG
+2. **Cazador de Bugs Funcionales** - lógica, APIs, integraciones, RAG
 3. **Cazador de Bugs de Calidad** - arquitectura, rendimiento, deuda t\u00e9cnica, observabilidad
 
 Cada agente debe devolver hallazgos en formato estandarizado con severidad, archivo, l\u00ednea, evidencia, impacto y soluci\u00f3n sugerida.
@@ -376,7 +376,7 @@ Cuando el usuario aprueba, se corrigen los bugs en orden de severidad.
 | Severidad | Definici\u00f3n | Tiempo de Respuesta | Ejemplos |
 |-----------|-----------------|---------------------|----------|
 | **CR\u00cdTICO** | Ca\u00edda, seguridad, p\u00e9rdida de datos | Inmediato | SQL injection, deadlock en transacci\u00f3n, null pointer en producci\u00f3n |
-| **ALTO** | Funciónalidad rota, rendimiento inaceptable | Esta semana | N+1 queries, algoritmo incorrecto, API erróneos |
+| **ALTO** | Funcionalidad rota, rendimiento inaceptable | Esta semana | N+1 queries, algoritmo incorrecto, API erróneos |
 | **MEDIO** | Edge case, deuda t\u00e9cnica, workaround | Este mes | Falta validación opcional, código duplicado, `except: pass` |
 | **BAJO** | Mejora incremental, code smell | Backlog | Nombre poco claro, falta type hints, comentario obsoleto |
 
@@ -389,10 +389,10 @@ Usuario: "Ejecuta Bug Slayer sobre /home/david/proyecto"
 
 Hermes:
 1. Fase 0: Verifica git status → OK, backup creado
-2. Fase 0: Pre-flight check → agentes funciónan
+2. Fase 0: Pre-flight check → agentes funcionan
 3. Fase 1: Lista estructura, LOC, tests, dependencias
 4. Fase 2: Lanza 3 agentes de auditoría (read-only)
-5. Fase 3: Espera resultados consolidados, verifica integrity
+5. Fase 3: Espera resultados consolidados, verifica integridad
 6. Fase 4: Consolida reporte con 8 bugs (2 críticos, 3 altos, 2 medios, 1 bajo)
 7. Fase 5: Usuario aprueba → crea TODOs y corrige por severidad
 8. Fase 5: Aplica fixes, crea tests de regresión, ejecuta suite

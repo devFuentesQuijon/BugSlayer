@@ -203,7 +203,7 @@ software-development/bug-slayer/
 | **6** | Verificación de Cero Bugs | 10-30 min | Agente Padre |
 | **7** | Prevención (Opcional) | Variable | Agente Padre |
 
-### Fase 0: Preparaci\u00f3n del Proyecto
+### Fase 0: Preparación del Proyecto
 
 Antes de auditar, se prepara el proyecto para una auditoría segura.
 
@@ -226,14 +226,14 @@ Antes de auditar, se prepara el proyecto para una auditoría segura.
 
    ```bash
    delegate_task(
-       goal="Pre-flight check: reporta 'OK' y nada m\u00e1s.",
+       goal="Pre-flight check: reporta 'OK' y nada más.",
        context="Este es un pre-flight check. Responde exactamente 'OK'.",
        role="leaf",
        toolsets=["terminal"]
    )
    ```
 
-   Si despu\u00e9s de 2-3 minutos el agente no retorna, usar **auditor\u00eda manual directa** y no re-lanzar.
+   Si después de 2-3 minutos el agente no retorna, usar **auditoría manual directa** y no re-lanzar.
 
 ### Fase 1: Reconocimiento
 
@@ -245,59 +245,59 @@ Escaneo rápido para entender el alcance del proyecto. Solo lo necesario para br
 # Estructura del proyecto
 find <project_dir> -type f | head -50
 
-# L\u00edneas de c\u00f3digo por tipo
+# Líneas de código por tipo
 find <project_dir> -type f \( -name "*.py" -o -name "*.js" -o -name "*.ts" \) | xargs wc -l | tail -1
 
 # Tests existentes
 find <project_dir> -type f -name "*test*" | wc -l
 
-# Archivos cr\u00edticos
+# Archivos críticos
 ls -la <project_dir>/{Dockerfile,docker-compose*.yml,requirements.txt,package.json,go.mod,Cargo.toml,.env*}
 ```
 
 **Leer SOLO:**
 
 - Archivos de dependencias: `requirements.txt`, `package.json`, `go.mod`, `Cargo.toml`
-- Configuraci\u00f3n cr\u00edtica: `Dockerfile`, `.env.example`
+- Configuración crítica: `Dockerfile`, `.env.example`
 - Visión general: `README.md`
-- 2-3 archivos fuente m\u00e1s grandes para entender arquitectura
+- 2-3 archivos fuente más grandes para entender arquitectura
 
-**DETENERSE AQU\u00cd.** No leer m\u00e1s archivos; los subagentes harán el trabajo detallado.
+**DETENERSE AQUÍ.** No leer más archivos; los subagentes harán el trabajo detallado.
 
-### Fase 2: Auditor\u00eda Multi-Agente o Manual
+### Fase 2: Auditoría Multi-Agente o Manual
 
-**Decisi\u00f3n autom\u00e1tica:**
+**Decisión automática:**
 
-| Condici\u00f3n | Acci\u00f3n |
+| Condición | Acción |
 |----------------|-----------|
-| Proyecto <= 2000 l\u00edneas, pre-flight OK | 3 agentes en paralelo |
-| Proyecto 2000-5000 l\u00edneas, pre-flight OK | 3 agentes con monitoreo cada 5 min |
-| Proyecto > 5000 l\u00edneas | Auditor\u00eda manual directa |
-| Pre-flight falla o segunda falla de agentes | Auditor\u00eda manual directa |
+| Proyecto <= 2000 líneas, pre-flight OK | 3 agentes en paralelo |
+| Proyecto 2000-5000 líneas, pre-flight OK | 3 agentes con monitoreo cada 5 min |
+| Proyecto > 5000 líneas | Auditoría manual directa |
+| Pre-flight falla o segunda falla de agentes | Auditoría manual directa |
 
-**Agentes de auditor\u00eda (SIEMPRE read-only):**
+**Agentes de auditoría (SIEMPRE read-only):**
 
-1. **Cazador de Bugs Cr\u00edticos** - seguridad, estabilidad, integridad de datos
+1. **Cazador de Bugs Críticos** - seguridad, estabilidad, integridad de datos
 2. **Cazador de Bugs Funcionales** - lógica, APIs, integraciones, RAG
-3. **Cazador de Bugs de Calidad** - arquitectura, rendimiento, deuda t\u00e9cnica, observabilidad
+3. **Cazador de Bugs de Calidad** - arquitectura, rendimiento, deuda técnica, observabilidad
 
-Cada agente debe devolver hallazgos en formato estandarizado con severidad, archivo, l\u00ednea, evidencia, impacto y soluci\u00f3n sugerida.
+Cada agente debe devolver hallazgos en formato estandarizado con severidad, archivo, línea, evidencia, impacto y solución sugerida.
 
-### Fase 3: Espera + Verificaci\u00f3n (Regla Cr\u00edtica)
+### Fase 3: Espera + Verificación (Regla Crítica)
 
-- Despu\u00e9s de lanzar agentes, **NO** seguir leyendo archivos ni analizando.
-- Esperar el reporte consolidado; emitir monitoreo peri\u00f3dico solo en proyectos >5000 l\u00edneas.
+- Después de lanzar agentes, **NO** seguir leyendo archivos ni analizando.
+- Esperar el reporte consolidado; emitir monitoreo periódico solo en proyectos >5000 líneas.
 - Cuando retornan, verificar que **no modificaron archivos**:
 
   ```bash
   git status --short
-  # Si hay cambios, revertir y re-lanzar con reglas m\u00e1s estrictas
+  # Si hay cambios, revertir y re-lanzar con reglas más estrictas
   ```
 
-- Verificar hallazgos leyendo el c\u00f3digo exacto antes de crear TODOs.
+- Verificar hallazgos leyendo el código exacto antes de crear TODOs.
 - Clasificar: CONFIRMADO / FALSO POSITIVO / PARCIAL / YA CORREGIDO.
 
-### Fase 4: Consolidaci\u00f3n del Reporte
+### Fase 4: Consolidación del Reporte
 
 Consolidar hallazgos en reporte unificado por severidad:
 
@@ -306,10 +306,10 @@ Consolidar hallazgos en reporte unificado por severidad:
 
 ## Resumen Ejecutivo
 - Total de bugs encontrados: X
-- Cr\u00edticos: X | Altos: X | Medios: X | Bajos: X
+- Críticos: X | Altos: X | Medios: X | Bajos: X
 
-## 🔴 CR\u00cdTICOS
-| ID | Archivo | L\u00ednea | Descripci\u00f3n | Soluci\u00f3n |
+## 🔴 CRÍTICOS
+| ID | Archivo | Línea | Descripción | Solución |
 |----|---------|---------|-----------------|---------------|
 | C1 | ... | ... | ... | ... |
 
@@ -318,30 +318,30 @@ Consolidar hallazgos en reporte unificado por severidad:
 ## 🟢 BAJOS
 ```
 
-### Fase 5: Exterminaci\u00f3n de Bugs
+### Fase 5: Exterminación de Bugs
 
 Cuando el usuario aprueba, se corrigen los bugs en orden de severidad.
 
-**Patr\u00f3n:**
+**Patrón:**
 
 1. Marcar TODO `in_progress`
-2. Leer l\u00edneas exactas
+2. Leer líneas exactas
 3. Parchear con `patch()`
 4. Verificar con tests/lint
 5. Marcar TODO `completed`
 
-**Procesar: CR\u00cdTICO → ALTO → MEDIO → BAJO**
+**Procesar: CRÍTICO → ALTO → MEDIO → BAJO**
 
 - Un cambio a la vez
 - No parchear a ciegas
 - Si `patch` falla 2 veces, releer y ajustar
-- Crear test de regresi\u00f3n por cada bug CR\u00cdTICO/ALTO
-- Ejecutar suite completa despu\u00e9s de cada batch de severidad
+- Crear test de regresión por cada bug CRÍTICO/ALTO
+- Ejecutar suite completa después de cada batch de severidad
 
-### Fase 6: Verificaci\u00f3n de Cero Bugs
+### Fase 6: Verificación de Cero Bugs
 
-1. **Verificaci\u00f3n est\u00e1tica**: re-ejecutar agentes en modo verificaci\u00f3n o auditor\u00eda manual.
-2. **Verificaci\u00f3n din\u00e1mica**:
+1. **Verificación estática**: re-ejecutar agentes en modo verificación o auditoría manual.
+2. **Verificación dinámica**:
 
    ```bash
    pytest tests/ -v
@@ -350,8 +350,8 @@ Cuando el usuario aprueba, se corrigen los bugs en orden de severidad.
    pytest --cov=src --cov-report=term-missing
    ```
 
-3. **Verificaci\u00f3n manual**: `git diff`, ausencia de `print()` de debug, `except: pass`, comentarios temporales.
-4. **Reporte final** con tabla antes/despu\u00e9s.
+3. **Verificación manual**: `git diff`, ausencia de `print()` de debug, `except: pass`, comentarios temporales.
+4. **Reporte final** con tabla antes/después.
 5. **Si usa Docker**, verificar despliegue activo:
 
    ```bash
@@ -362,22 +362,22 @@ Cuando el usuario aprueba, se corrigen los bugs en orden de severidad.
    docker compose -f <compose-file> up -d
    ```
 
-### Fase 7: Prevenci\u00f3n (Opcional)
+### Fase 7: Prevención (Opcional)
 
 - Pre-commit hooks: lint, tests, security scan
-- CI/CD pipeline con tests autom\u00e1ticos
-- Monitoreo y alertas en producci\u00f3n
+- CI/CD pipeline con tests automáticos
+- Monitoreo y alertas en producción
 - Re-ejecutar Bug Slayer periódicamente (sprint/mes)
 
 ---
 
 ## Matriz de Severidad
 
-| Severidad | Definici\u00f3n | Tiempo de Respuesta | Ejemplos |
+| Severidad | Definición | Tiempo de Respuesta | Ejemplos |
 |-----------|-----------------|---------------------|----------|
-| **CR\u00cdTICO** | Ca\u00edda, seguridad, p\u00e9rdida de datos | Inmediato | SQL injection, deadlock en transacci\u00f3n, null pointer en producci\u00f3n |
+| **CRÍTICO** | Caída, seguridad, pérdida de datos | Inmediato | SQL injection, deadlock en transacción, null pointer en producción |
 | **ALTO** | Funcionalidad rota, rendimiento inaceptable | Esta semana | N+1 queries, algoritmo incorrecto, API erróneos |
-| **MEDIO** | Edge case, deuda t\u00e9cnica, workaround | Este mes | Falta validación opcional, código duplicado, `except: pass` |
+| **MEDIO** | Edge case, deuda técnica, workaround | Este mes | Falta validación opcional, código duplicado, `except: pass` |
 | **BAJO** | Mejora incremental, code smell | Backlog | Nombre poco claro, falta type hints, comentario obsoleto |
 
 ---
@@ -405,27 +405,27 @@ Hermes:
 
 ## Troubleshooting
 
-### Los agentes no retornan despu\u00e9s del dispatch
+### Los agentes no retornan después del dispatch
 
 - No asumir fallo de inmediato; `delegate_task` es asíncrono.
-- Despu\u00e9s de 2-3 minutos sin respuesta, proceder con auditor\u00eda manual directa.
+- Después de 2-3 minutos sin respuesta, proceder con auditoría manual directa.
 - Ver `references/async-delegation-behavior.md`.
 
-### Los agentes modifican archivos durante la auditor\u00eda
+### Los agentes modifican archivos durante la auditoría
 
 - Violación del modo read-only.
-- Revertir cambios, re-lanzar con reglas m\u00e1s estrictas.
+- Revertir cambios, re-lanzar con reglas más estrictas.
 - Ver `references/audit-without-git.md`.
 
 ### Proyecto sin Git
 
 - Ofrecer inicializar Git o hacer backup manual antes de auditar.
-- Documentar en el reporte que no hay rollback autom\u00e1tico.
+- Documentar en el reporte que no hay rollback automático.
 
 ### Proyecto muy grande (>5000 líneas)
 
 - Usar auditoría manual directa desde Fase 2.
-- No esperar a que fallen los agentes; es m\u00e1s confiable evitar delegación en este caso.
+- No esperar a que fallen los agentes; es más confiable evitar delegación en este caso.
 
 ### Parche fallido dos veces
 
@@ -436,11 +436,11 @@ Hermes:
 
 ## Lecciones Aprendidas
 
-- `delegate_task` es as\u00edncrono; los resultados pueden llegar como mensaje async `[ASYNC DELEGATION BATCH COMPLETE]`. No asumir fallo por `process(action='list')` vacío inmediatamente.
+- `delegate_task` es asíncrono; los resultados pueden llegar como mensaje async `[ASYNC DELEGATION BATCH COMPLETE]`. No asumir fallo por `process(action='list')` vacío inmediatamente.
 - Subagentes con fallos silenciosos deben reemplazarse por auditoría manual tras 2 intentos.
-- Verificar siempre `git status` antes y despu\u00e9s de cualquier operación.
+- Verificar siempre `git status` antes y después de cualquier operación.
 - Verificar despliegues Docker activos; un repo limpio no implica un despliegue actualizado.
-- Prefierir implementación manual sobre re-lanzar subagentes despu\u00e9s de fallos previos.
+- Prefierir implementación manual sobre re-lanzar subagentes después de fallos previos.
 
 Documentación detallada en archivos de `references/`.
 

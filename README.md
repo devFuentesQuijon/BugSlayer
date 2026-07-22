@@ -83,6 +83,87 @@ PREPARAR → AUDITAR → ENCONTRAR → CORREGIR → VERIFICAR → REPETIR
 
 ---
 
+## Instalaci\u00f3n
+
+### Opci\u00f3n 1: Instalar desde el release (recomendado para usuarios finales)
+
+1. Descargar el paquete desde GitHub Releases:
+
+```bash
+curl -L -o bugslayer-v1.1.0.tar.gz \
+  https://github.com/devFuentesQuijon/BugSlayer/releases/download/v1.1.0/bugslayer-v1.1.0.tar.gz
+```
+
+2. Extraer en el directorio de skills de Hermes:
+
+```bash
+mkdir -p ~/.hermes/skills/software-development
+tar -xzf bugslayer-v1.1.0.tar.gz -C ~/.hermes/skills/software-development/
+```
+
+El resultado esperado es:
+
+```text
+~/.hermes/skills/software-development/bug-slayer/
+├── SKILL.md
+├── README.md
+├── templates/
+├── scripts/
+└── references/
+```
+
+3. Verificar la instalaci\u00f3n:
+
+```bash
+ls ~/.hermes/skills/software-development/bug-slayer/SKILL.md
+```
+
+### Opci\u00f3n 2: Clonar desde el repositorio de GitHub
+
+```bash
+git clone https://github.com/devFuentesQuijon/BugSlayer.git \
+   ~/.hermes/skills/software-development/bug-slayer
+```
+
+### Opci\u00f3n 3: Copia desde una instalaci\u00f3n local existente
+
+Si ya ten\u00e9s la skill en otro equipo o en este equipo, copiarla directamente:
+
+```bash
+cp -r /ruta/local/bug-slayer \
+   ~/.hermes/skills/software-development/bug-slayer
+```
+
+### Verificaci\u00f3n post-instalaci\u00f3n
+
+Confirmar que Hermes cargue la skill sin errores:
+
+```bash
+hermes skills list | grep bug-slayer
+```
+
+Para usarla, mencion\u00e1 `bug-slayer` o ejecutala sobre un proyecto, por ejemplo:
+
+```
+Ejecuta Bug Slayer sobre /ruta/al/proyecto
+```
+
+### Actualizaci\u00f3n
+
+Para actualizar a una nueva versi\u00f3n desde Releases:
+
+```bash
+mv ~/.hermes/skills/software-development/bug-slayer \
+   ~/.hermes/skills/software-development/bug-slayer.bak-$(date +%Y%m%d)
+curl -L -o bugslayer-v<nueva-version>.tar.gz \
+   https://github.com/devFuentesQuijon/BugSlayer/releases/download/v<nueva-version>/bugslayer-v<nueva-version>.tar.gz
+mkdir -p ~/.hermes/skills/software-development
+tar -xzf bugslayer-v<nueva-version>.tar.gz \
+   -C ~/.hermes/skills/software-development/
+```
+
+---
+
 ## Estructura de la Skill
 
 ```

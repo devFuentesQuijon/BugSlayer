@@ -18,7 +18,7 @@ sistemático y corrección automatizada en un flujo de trabajo iterativo.
 | **Versión** | 1.1.0 |
 | **Autor** | devFuentesQuijon & Hermes Agent |
 | **Licencia** | MIT |
-| **Skill Hermes requerida** | `software-development/bug-slayer` |
+| **Skill Hermes** | `software-development/bug-slayer` |
 | **Skills relacionadas** | `multi-agent-auditing`, `systematic-debugging`, `requesting-code-review`, `test-driven-development`, `plan` |
 | **Plataformas soportadas** | Linux, macOS, Windows |
 
